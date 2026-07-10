@@ -1,4 +1,4 @@
-var CACHE = 'go-ticket-v3';
+var CACHE = 'go-ticket-v4';
 var ASSETS = [
   './',
   './index.html',
@@ -24,8 +24,21 @@ self.addEventListener('activate', function(e) {
   );
 });
 
-// Cache-first: serve from cache, fall back to network (offline-proof)
+// Pages: network-first so updates show immediately when online,
+// falling back to cache when offline. Other assets: cache-first.
 self.addEventListener('fetch', function(e) {
+  if (e.request.mode === 'navigate' || e.request.destination === 'document') {
+    e.respondWith(
+      fetch(e.request).then(function(resp) {
+        var copy = resp.clone();
+        caches.open(CACHE).then(function(c) { c.put(e.request, copy); });
+        return resp;
+      }).catch(function() {
+        return caches.match(e.request, { ignoreSearch: true });
+      })
+    );
+    return;
+  }
   e.respondWith(
     caches.match(e.request, { ignoreSearch: true }).then(function(r) {
       return r || fetch(e.request);
