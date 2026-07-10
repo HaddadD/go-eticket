@@ -1,0 +1,13 @@
+{
+  "name": "GO Ticket",
+  "short_name": "GO Ticket",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#0F27A6",
+  "icons": [
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
