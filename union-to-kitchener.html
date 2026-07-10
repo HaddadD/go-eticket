@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>GO Ticket</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icon-512.png">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#0F27A6">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
@@ -204,7 +208,7 @@
     letter-spacing: 2px;
   }
 
-  #bottomWhite { background: #ffffff; }
+  #bottomWhite { height: 15%; background: #ffffff; }
 </style>
 </head>
 <body>
@@ -250,7 +254,7 @@
       </span></div>
     </div>
 
-    
+    <div id="bottomWhite"></div>
   </div>
 
 <script>
@@ -290,6 +294,11 @@
     clock();
     setInterval(clock, 250);
   })();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() { navigator.serviceWorker.register('./sw.js'); });
+}
 </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-var CACHE = 'go-ticket-v1';
+var CACHE = 'go-ticket-v2';
 var ASSETS = [
   './',
   './index.html',
